@@ -46,6 +46,7 @@ class RegisteredUserController extends Controller
             $user = new User;
             $user -> email = $request -> email;
             $user -> password = $passwordEncrip;
+            $user->assignRole('Admin');
             $user -> save();
             $admin = new Administradores;
             $admin -> name_admin = $request -> name_admin;

@@ -18,9 +18,11 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/dashboard', [AdministradorController::class, 'ind'])
+
+Route::group(['middleware' => ['role:admin']], function () {
+            Route::get('/dashboard', [AdministradorController::class, 'ind'])
                 ->middleware('auth')
                 ->name('dashboard');
-
+});
 
 require __DIR__.'/auth.php';
